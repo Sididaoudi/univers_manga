@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Tableau de bord -- Mangaka
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="admin-dashboard">
+		<h1 class="admin-dashboard-title">Tous les mangaka</h1>
+
+		<a class="btn" href="{{ path('admin.mangaka.create') }}">Créer un manga-ka</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody
+				class="list-product">
+				{% for mangaka in mangakas %}
+				<tr>
+					<td>
+						<a href="{{ path('admin.mangaka.edit', {id: mangaka.id}) }}">
+							{{ mangaka.name }}
+						</a>
+					</td>
+					<td>
+						<div class="d-flex gap-1">
+							<a class="btn btn-primary btn-sm" href="{{ path('admin.mangaka.edit', {id: mangaka.id}) }}">Editer</a>
+							<form action="{{ path('admin.mangaka.delete', { id: mangaka.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet auteur ?');">
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mangaka.id) }}">
+								<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+

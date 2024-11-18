@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Univers Manga
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+	<section class="planning-of-the-week">
+		<h2>Nouveautés</h2>
+
+		<div class="planning-content">
+			{% for manga in mangas %}
+				<div class="cards">
+					<div class="card">
+						<a href="{{ path('manga.show', {'id' : manga.id} )}}">
+						<img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(manga, 'thumbnailFile') }}" alt="{{ manga.title }}" style="width: 216px;">
+						</a>
+						<div class="card-title">
+							<h3 class="card-title">{{ manga.title }}</h3>
+						</div>
+						<div class="card-date">
+							{{ manga.releaseDate|date('d/m/Y') }}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="more-Btn">
+			<button> <a href="{{ path('planning') }}">Planning des sorties</a></button>
+		</div>
+
+	</section>
+
+	{# <section class="manga-events">
+		<h2>Évènement</h2>
+		<div class="planning-content">
+			{% for manga in eventMangas %}
+				<div class="cards">
+					<a href="{{ path('manga.show', {'id' : manga.id} )}}">
+						<img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(manga, 'thumbnailFile') }}" alt="{{ manga.title }}" style="width: 216px;">
+					</a>
+
+					<div class="cards-info">
+						<div class="card-title">
+							<h2>{{ manga.title }}</h2>
+						</div>
+						<div class="card-date">
+							{{ manga.releaseDate|date('d/m/Y') }}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="more-Btn">
+			<button>Découvrir la série</button>
+		</div>
+
+
+	</section> #}
+
+
+
+
+{% endblock %}
+
