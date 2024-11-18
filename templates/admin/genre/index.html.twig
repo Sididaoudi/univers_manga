@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Tableau de bord -- Genres
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="admin-dashboard">
+		<h1>Genres</h1>
+
+		<a class="btn" href="{{ path('admin.genre.create') }}">Créer un genre</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody class="list-product">
+				{% for genre in genres %}
+					<tr>
+						<td>
+							<a href="{{ path('admin.genre.edit', {id: genre.id}) }}">
+								{{ genre.name }}
+							</a>
+						</td>
+						<td>
+							<div class="d-flex gap-1">
+								<a class="btn btn-primary btn-sm" href="{{ path('admin.genre.edit', {id: genre.id}) }}">Editer</a>
+								<form action="{{ path('admin.genre.delete', { id: genre.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce genre ?');">
+									<input type="hidden" name="_method" value="DELETE">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ genre.id) }}">
+									<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+								</form>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+

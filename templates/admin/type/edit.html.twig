@@ -1,0 +1,11 @@
+{% extends "admin/admin.html.twig" %}
+
+
+{% block title "Type : " ~ type.name %}
+
+
+{% block body %}
+	<h1>{{ type.name }}</h1>
+
+	{{ form(form) }}{% endblock %}
+

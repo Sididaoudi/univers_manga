@@ -1,0 +1,122 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{manga.title}}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+	<div class="single-product-page">
+		<h2 class="single-product-title">{{manga.title}}</h2>
+
+		<div class="single-product-content">
+
+			<div class="single-product-left">
+				<div class="product-img">
+					<img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(manga, 'thumbnailFile') }}" alt="{{ manga.title }}" style="width: 416px;">
+				</div>
+
+
+				<div class="buttons">
+
+					<div class="buy-btn">
+						<button>Acheter</button>
+					</div>
+
+					{# <div class="read-an-excerpt">
+											<button>Lire un extrait</button>
+										</div> #}
+
+				<!-- Button trigger modal -->
+					{# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											Lire un extrait
+										</button> #}
+
+					<!-- Modal -->
+					{# <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h1 class="modal-title fs-5" id="exampleModalLabel">{{manga.title}}</h1>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(manga, 'thumbnailFile') }}" alt="{{ manga.title }}" style="width: 416px;">
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+													</div>
+												</div>
+											</div>
+										</div> #}
+
+				</div>
+
+			</div>
+
+			<div class="single-product-right">
+
+				<div class="product-info-details">
+
+					<section class="product-info-left">
+						<ul>
+							<li>Titre japonais</li>
+							<li>Auteur</li>
+							<li>Genres</li>
+							<li>Type</li>
+							<li>Nombres de pages</li>
+						</ul>
+
+					</section>
+
+					<section class="product-info-right">
+						<ul>
+							<li>{{manga.originalName}}</li>
+							<li>{% for mangaka in manga.mangakas %}
+        								{{ mangaka.name }}
+									{% if not loop.last %}, {% endif %}
+   								{% endfor %}</li>
+							<li>
+								{% for genre in manga.genre %}
+        								{{ genre.name }}
+									{% if not loop.last %} {% endif %}
+   								{% endfor %}
+
+							</li>
+
+							<li>{{ manga.typeManga.name }}</li>
+							<li>{{ manga.numberPages}}</li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+
+
+		</div>
+
+		<section class="single-product-down">
+			<article class="product-resume">
+				<p>Résumé :
+				</p>
+
+				<p>{{ manga.synopsis }}</p>
+			</article>
+		</section>
+
+		{# <section class="single-product-more-volumes">
+			<h3>Les produits de la licence {{manga.title}}</h3>
+		
+		</section> #}
+
+
+	</div>
+
+
+{% endblock %}
+

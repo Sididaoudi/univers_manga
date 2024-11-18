@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Tous les mangas
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+	<div class="product">
+		<div class="product-content">
+			{% for manga in mangas %}
+				<div class="cards">
+					<div class="card">
+						<a href="{{ path('manga.show', {'id' : manga.id} )}}">
+						<img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(manga, 'thumbnailFile') }}" alt="{{ manga.title }}" style="width: 216px;">
+						<h3 class="card-title"> {{ manga.title }}</h3>
+						<button class="moreBtn"> En savoir plus </button>
+		
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+{% endblock %}
+

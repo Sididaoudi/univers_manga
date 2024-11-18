@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Tableau de bord -- Types
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="admin-dashboard">
+		<h1>Types</h1>
+
+		<a class="btn" href="{{ path('admin.type.create') }}">Créer un type</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody class="list-product">
+				{% for type in types %}
+					<tr>
+						<td>
+							<a href="{{ path('admin.type.edit', {id: type.id}) }}">
+								{{ type.name }}
+							</a>
+						</td>
+						<td>
+							<div class="d-flex gap-1">
+								<a class="btn btn-primary btn-sm" href="{{ path('admin.type.edit', {id: type.id}) }}">Editer</a>
+								<form action="{{ path('admin.type.delete', { id: type.id }) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce type ?');">
+									<input type="hidden" name="_method" value="DELETE">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ type.id) }}">
+									<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+								</form>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+
