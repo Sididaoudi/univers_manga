@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
 
 #[ORM\Entity(repositoryClass: MangakaRepository::class)]
 class Mangaka
@@ -17,6 +19,7 @@ class Mangaka
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("manga:read")]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -37,7 +40,9 @@ class Mangaka
     /**
      * @var Collection<int, Manga>
      */
-    #[ORM\ManyToMany(targetEntity: Manga::class, mappedBy: 'mangakas')] // Correction ici
+    #[ORM\ManyToMany(targetEntity: Manga::class, mappedBy: 'mangakas')] 
+    #[Groups("mangaka:read")]
+    #[MaxDepth(1)]  // Limite la profondeur de sérialisation pour éviter les boucles infinies
     private Collection $mangas;
 
     public function __construct()

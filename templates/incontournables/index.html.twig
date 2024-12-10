@@ -1,0 +1,51 @@
+{# {% extends 'base.html.twig' %}
+
+
+{% block title %}Univers Manga
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+	<div id="main-page">
+
+		<section class="must-read-mangas">
+			<h2>Les incontournables</h2>
+
+			<div class="planning-content">
+				{% for manga in mustReadMangas %}
+					<div class="cards">
+						<div class="card">
+							<a href="{{ path('manga.show', {'id' : manga.id} )}}">
+								<img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(manga, 'thumbnailFile') }}" alt="{{ manga.title }}" style="width: 216px;">
+							</a>
+							<div class="card-title">
+								<h3 class="card-title">{{ manga.title }}</h3>
+							</div>
+							<div class="card-date">
+								{{ manga.releaseDate|date('d/m/Y') }}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+		<div class="more-Btn">
+						<button> <a href="{{ path('planning') }}">Découvrir d'autres mangas incontournables</a></button>
+					</div>
+				
+		</section>
+
+
+	</div>
+
+
+
+{% endblock %}
+
+#}

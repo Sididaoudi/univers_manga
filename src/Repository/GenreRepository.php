@@ -16,6 +16,17 @@ class GenreRepository extends ServiceEntityRepository
         parent::__construct($registry, Genre::class);
     }
 
+    // cette fonction permet d'afficher les genres par ordre alphabétique
+    public function getGenresByAlphabeticalOrder()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.name', 'ASC')
+            ->andWhere('m.title LIKE :title')
+            ->getQuery()
+            ->getResult();
+    }
+
+
     //    /**
     //     * @return Genre[] Returns an array of Genre objects
     //     */

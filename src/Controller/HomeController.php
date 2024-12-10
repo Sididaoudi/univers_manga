@@ -15,6 +15,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(MangaRepository $repository): Response
     {
+        // Liste des IDs des mangas incontournables
+        $idsArray = [3, 4, 5]; // j'affiche les mangas selon leurs ID
+
+        // Récupérer les mangas avec les IDs spécifiques
+        $mustReadMangas = $repository->getMustReadMangaById($idsArray);
+
+
         // calculer le début et la fin de la semaine courante
         $startOfWeek = (new \DateTime())->modify('monday this week');
         $endOfWeek = (new \DateTime())->modify('sunday this week');
@@ -33,6 +40,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'mangas' => $mangas,
             // 'eventMangas' => $eventMangas
+            'mustReadMangas' => $mustReadMangas, // Pour les mangas incontournables
         ]);
     }
 
@@ -49,7 +57,7 @@ class HomeController extends AbstractController
 
     // Cette route permet de récupérer un manga grâce à son ID puis de voir les informations sur ce dernier
     #[Route('/manga/{id}', name: 'manga.show')]
-    public function showManga(MangaRepository $repository, EntityManagerInterface $entityManager, int $id): Response
+    public function showManga(MangaRepository $repository,  int $id): Response
     {
         $manga = $repository->find($id); // permet de trouver un manga à l'aide de son id
 
@@ -89,5 +97,23 @@ class HomeController extends AbstractController
             'results' => $results
         ]);
     }
+
+    // Cette route permet d'afficher les mangas dans la section "les incontournables" ils sont afficher en fonction de leurs ID
+    // #[Route('/mustreadmanga', name: 'mustread')]
+    // public function mustReadManga(MangaRepository $repository): Response
+    // {
+    //     // Liste des IDs de mangas que tu veux afficher
+    //     $idsArray = [3, 4, 5]; // Tu peux ajouter autant d'IDs que tu veux ici
+
+    //     // Utilisation de la méthode pour récupérer les mangas
+    //     $mustReadMangas = $repository->getMustReadMangaById($idsArray);
+
+    //     // Vérification pour afficher les mangas dans la vue
+    //     return $this->render('incontournables/index.html.twig', [
+    //         'mustReadMangas' => $mustReadMangas
+    //     ]);
+    // }
+
+
 
 }

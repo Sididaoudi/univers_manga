@@ -222,9 +222,42 @@ input.search{
         right: 30px;
         font-size: 2rem;
     }
+    /* #main-page{
+        display: flex;
+        flex-wrap: wrap;
+    } */
+    .planning-content {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    
+    .single-product-content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .single-product-down{
+        max-width: 100%;
+    }
+
+    .resume {
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 0 2rem;
+        max-width: 100%;
+    }
+
 }
 
 /**** Fin Responsive Navbar ****/
+
+/*** Page d'accueil ***/
+
+
+
 
 /***Sections ***/
 
@@ -234,6 +267,7 @@ input.search{
     display: flex;
     align-items: center;
     flex-direction: column;
+    max-width: 100%;
 }
 
 
@@ -242,6 +276,7 @@ input.search{
     justify-content: center;
     gap: 5rem;
     padding: 5rem;
+    max-width: 100%;
 }
 
 .planning-content .cards {
@@ -272,6 +307,8 @@ input.search{
 }
 
 /*** Fin de la section planning de la semaine *****/
+
+/*** Fin de la page d'accueil *****/
 
 
 /*** section planning toutes les sorties du mois  *****/
@@ -365,8 +402,8 @@ input.search{
     height: 120px;
     width: 120px;
     position: absolute;
-        top: -160px;
-        z-index: 10;
+    top: -160px;
+    z-index: 10;
     
 }
 
@@ -409,6 +446,16 @@ input.search{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.product-info-left li {
+   color: var(--color-black);
+   font-weight: bold;
+} 
+
+.product-info-right li {
+    color: var(--color-red);
+    font-weight: bold;
 }
 
 .product-img {

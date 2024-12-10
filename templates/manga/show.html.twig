@@ -65,11 +65,12 @@
 
 					<section class="product-info-left">
 						<ul>
-							<li>Titre japonais</li>
+							<li>Titre original</li>
 							<li>Auteur</li>
 							<li>Genres</li>
 							<li>Type</li>
 							<li>Nombres de pages</li>
+							<li>Date de sortie</li>
 						</ul>
 
 					</section>
@@ -88,9 +89,9 @@
    								{% endfor %}
 
 							</li>
-
 							<li>{{ manga.typeManga.name }}</li>
 							<li>{{ manga.numberPages}}</li>
+							<li>{{ manga.releaseDate|date('d/m/Y') }}</li>
 						</ul>
 					</section>
 
@@ -102,8 +103,7 @@
 
 		<section class="single-product-down">
 			<article class="product-resume">
-				<p>Résumé :
-				</p>
+				<p>Résumé : </p>
 
 				<p>{{ manga.synopsis }}</p>
 			</article>

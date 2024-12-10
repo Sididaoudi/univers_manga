@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Manga;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -51,8 +52,10 @@ class MangaRepository extends ServiceEntityRepository
             ->orderBy('m.title', 'ASC')
             ->andWhere('m.title LIKE :title')
             ->orWhere('m.title LIKE :title2')
+            ->orWhere('m.title LIKE :title3 ')
             ->setParameter('title', '%Tome 01%') // affiche uniquement les premiers tomes
             ->setParameter('title2', '%Intégrale%') 
+            ->setParameter('title3', '%volume%')
             ->getQuery()
             ->getResult();
     }
@@ -67,23 +70,84 @@ class MangaRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // cette fonction permet d'afficher les futures sorties en fonction des mois
+    // cette fonction permet d'afficher les futures sorties 
     public function findByMonth(\DateTime $startOfMonth, \DateTime $endOfMonth): array
     {
         return $this->createQueryBuilder('r')
-            ->Where('r.release_date BETWEEN :start AND :end')
+            ->where('r.release_date BETWEEN :start AND :end')
             ->setParameter('start', $startOfMonth)
             ->setParameter('end', $endOfMonth)
-            ->andWhere('r.title LIKE :title')
-            ->orWhere('r.title LIKE :title2')
-            ->setParameter('title', '%Tome 01%') // affiche uniquement les premiers tomes
-            ->setParameter('title2', '%Intégrale%')
+            ->addOrderBy('r.release_date' , 'ASC') // permet d'afficher les sorties par dates
+            // ->andWhere('r.title LIKE :title')
+            // ->orWhere('r.title LIKE :title2')
+            // ->setParameter('title', '%Tome 01%') // affiche uniquement les premiers tomes
+            // ->setParameter('title2', '%Intégrale%')
             // ->setParameter('start', $startOfMonth)
             // ->setParameter('end', $endOfWeek)
             // ->setParameter('year', $year)
             ->getQuery()
             ->getResult();
     }
+
+    // cette fonction permet de récupérer tous les genres présent en BDD
+    public function getAllGenres()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('g.name', 'ASC')
+            ->select('g.name')
+            ->join('m.genre', 'g') // lien entre Manga et Genre
+            ->groupBy('g.id') // Pour éviter les doublons
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    // cette fonction permet de récupérer tous les genres présent en BDD
+    public function getAllTypes()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('t.name', 'ASC')
+            ->select('t.name')
+            ->join('m.types', 'g') // lien entre Manga et Types
+            ->groupBy('t.id') // Pour éviter les doublons
+            ->getQuery()
+            ->getResult();
+    }
+
+    // cette fonction permet d'afficher les mangas par genre
+    public function findByGenre($genre)
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.title', 'ASC')
+            ->join('m.genre', 'g') // permet de faire le lien entre les tables genre et manga
+            ->where('g.name = :genre')
+            ->setParameter('genre', $genre) // permet de définir la valeur :genre
+            ->getQuery()
+            ->getResult();
+    }
+
+    // cette fonction permet d'afficher les mangas dans la section "les incontournables" sélectionner selon leurs ID
+    public function getMustReadMangaById(array $ids): array
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.id IN (:ids)')
+            ->setParameter('ids', $ids)
+            ->orderBy('m.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+        // cette fonction permet d'afficher les mangas populaires d'après la BDD
+    // public function getPopularMangas(): array
+    // {
+    //     return $this->createQueryBuilder('m')
+    //         ->where('m.isPopular = :popular')
+    //         ->setParameter('popular', true)
+    //         ->setMaxResults(4)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
 
 
     //    public function findOneBySomeField($value): ?Manga

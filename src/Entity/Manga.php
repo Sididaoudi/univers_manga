@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
+
 
 #[ORM\Entity(repositoryClass: MangaRepository::class)]
 #[UniqueEntity('title')]
@@ -22,28 +25,35 @@ class Manga
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("manga:read")]
     private ?int $id = null;
 
     #[ORM\Column(type: DoctrineTypes::TEXT)]
+    #[Groups("manga:read")] 
     private ?string $title = null;
 
     #[ORM\Column(type: DoctrineTypes::TEXT)]
+    #[Groups("manga:read")] 
     private ?string $synopsis = null;
 
 
-    #[ORM\Column(type: DoctrineTypes::DATE_MUTABLE)] 
+    #[ORM\Column(type: DoctrineTypes::DATE_MUTABLE)]
+    #[Groups("manga:read")]
     private ?\DateTimeInterface $release_date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("manga:read")]
     private ?string $originalName = null;
 
     #[ORM\Column]
+    #[Groups("manga:read")]
     private ?int $numberPages = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("manga:read")]
     private ?string $thumbnail = null;
 
     #[Vich\UploadableField(mapping: 'manga', fileNameProperty: 'thumbnail')]
@@ -54,15 +64,19 @@ class Manga
      * @var Collection<int, Mangaka>
      */
     #[ORM\ManyToMany(targetEntity: Mangaka::class, inversedBy: 'mangas')]
+    #[Groups("manga:read")]
     private Collection $mangakas;
 
     #[ORM\ManyToOne(inversedBy: 'mangas')]
+    #[Groups("manga:read")]
     private ?Types $typeManga = null;
 
     /**
      * @var Collection<int, Genre>
      */
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'mangas')]
+    #[Groups("manga:read")]
+   // Limite la profondeur de sérialisation pour éviter les boucles infinies
     private Collection $genre;
 
     public function __construct()
@@ -234,6 +248,8 @@ class Manga
 
         return $this;
     }
+
+    
 
    
 }

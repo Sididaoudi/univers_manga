@@ -1,20 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Hello GenreController!{% endblock %}
+{% block title %}Genres
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('style/style.css') }}">
+{% endblock %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="product">
+	
+		<form action="{{ path('genres')}}" class="max-w-sm mx-auto"  method="GET">
+			<label for="genres" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sélectionner un genre</label>
+			 <select id="genre" name="genre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+			 	{% for genre in genres %}
+					 <option value="{{ genre.name }}">{{ genre.name }}</option>
+				{% endfor %}
+			 </select>
+			<button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+				Valider
+			</button>
+		</form>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		<div class="product-content">
+			{% for manga in mangas %} 
+				<div class="cards">
+					<div class="card">
+						<a href="{{ path('manga.show', {'id' : manga.id} )}}">
+							<img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(manga, 'thumbnailFile') }}" alt="{{ manga.title }}" style="width: 216px;">
+							<h3 class="card-title">
+								{{ manga.title }}</h3>
+							<button class="moreBtn">
+								En savoir plus
+							</button>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/univers_manga/src/Controller/GenreController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/univers_manga/templates/genre/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+
+	{% endblock %}
+

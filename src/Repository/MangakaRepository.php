@@ -16,6 +16,15 @@ class MangakaRepository extends ServiceEntityRepository
         parent::__construct($registry, Mangaka::class);
     }
 
+
+    // cette fonction permet d'afficher les manga-ka par ordre alphabétique
+    public function getMangaByAlphabeticalOrder()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Mangaka[] Returns an array of Mangaka objects
     //     */

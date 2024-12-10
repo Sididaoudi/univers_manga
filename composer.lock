@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dc59322a5ae91e060bf1c25478bfa1f",
+    "content-hash": "eaababfd7aaf93200382f63ec3044a2d",
     "packages": [
         {
             "name": "composer/semver",
@@ -1538,6 +1538,103 @@
             "time": "2023-02-15T13:44:18+00:00"
         },
         {
+            "name": "jms/serializer",
+            "version": "3.31.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/serializer.git",
+                "reference": "362503da26673f210221c25b99c795da718ad9aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/362503da26673f210221c25b99c795da718ad9aa",
+                "reference": "362503da26673f210221c25b99c795da718ad9aa",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/instantiator": "^1.3.1 || ^2.0",
+                "doctrine/lexer": "^2.0 || ^3.0",
+                "jms/metadata": "^2.6",
+                "php": "^7.4 || ^8.0",
+                "phpstan/phpdoc-parser": "^1.20"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.14 || ^2.0",
+                "doctrine/coding-standard": "^12.0",
+                "doctrine/orm": "^2.14 || ^3.0",
+                "doctrine/persistence": "^2.5.2 || ^3.0",
+                "doctrine/phpcr-odm": "^1.5.2 || ^2.0",
+                "ext-pdo_sqlite": "*",
+                "jackalope/jackalope-doctrine-dbal": "^1.3",
+                "ocramius/proxy-manager": "^1.0 || ^2.0",
+                "phpbench/phpbench": "^1.0",
+                "phpstan/phpstan": "^1.10.57",
+                "phpunit/phpunit": "^9.0 || ^10.0 || ^11.0",
+                "psr/container": "^1.0 || ^2.0",
+                "rector/rector": "^1.0.0",
+                "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
+                "symfony/expression-language": "^5.4 || ^6.0 || ^7.0",
+                "symfony/filesystem": "^5.4 || ^6.0 || ^7.0",
+                "symfony/form": "^5.4 || ^6.0 || ^7.0",
+                "symfony/translation": "^5.4 || ^6.0 || ^7.0",
+                "symfony/uid": "^5.4 || ^6.0 || ^7.0",
+                "symfony/validator": "^5.4 || ^6.0 || ^7.0",
+                "symfony/yaml": "^5.4 || ^6.0 || ^7.0",
+                "twig/twig": "^1.34 || ^2.4 || ^3.0"
+            },
+            "suggest": {
+                "doctrine/collections": "Required if you like to use doctrine collection types as ArrayCollection.",
+                "symfony/cache": "Required if you like to use cache functionality.",
+                "symfony/uid": "Required if you'd like to serialize UID objects.",
+                "symfony/yaml": "Required if you'd like to use the YAML metadata format."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JMS\\Serializer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                }
+            ],
+            "description": "Library for (de-)serializing data of any complexity; supports XML, and JSON.",
+            "homepage": "http://jmsyst.com/libs/serializer",
+            "keywords": [
+                "deserialization",
+                "jaxb",
+                "json",
+                "serialization",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/schmittjoh/serializer/issues",
+                "source": "https://github.com/schmittjoh/serializer/tree/3.31.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/goetas",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-10-31T18:35:14+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "3.7.0",
             "source": {
@@ -1637,6 +1734,68 @@
                 }
             ],
             "time": "2024-06-28T09:40:51+00:00"
+        },
+        {
+            "name": "nelmio/cors-bundle",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nelmio/NelmioCorsBundle.git",
+                "reference": "3a526fe025cd20e04a6a11370cf5ab28dbb5a544"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nelmio/NelmioCorsBundle/zipball/3a526fe025cd20e04a6a11370cf5ab28dbb5a544",
+                "reference": "3a526fe025cd20e04a6a11370cf5ab28dbb5a544",
+                "shasum": ""
+            },
+            "require": {
+                "psr/log": "^1.0 || ^2.0 || ^3.0",
+                "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.6",
+                "symfony/phpunit-bridge": "^5.4 || ^6.0 || ^7.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nelmio\\CorsBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nelmio",
+                    "homepage": "http://nelm.io"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/nelmio/NelmioCorsBundle/contributors"
+                }
+            ],
+            "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Symfony application",
+            "keywords": [
+                "api",
+                "cors",
+                "crossdomain"
+            ],
+            "support": {
+                "issues": "https://github.com/nelmio/NelmioCorsBundle/issues",
+                "source": "https://github.com/nelmio/NelmioCorsBundle/tree/2.5.0"
+            },
+            "time": "2024-06-24T21:25:28+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -6234,16 +6393,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v7.1.5",
+            "version": "v7.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "71d6e1f70f00752d1469d0f5e83b0a51716f288b"
+                "reference": "6066de113408496e1e3d4bf9e21fb209d344768b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/71d6e1f70f00752d1469d0f5e83b0a51716f288b",
-                "reference": "71d6e1f70f00752d1469d0f5e83b0a51716f288b",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/6066de113408496e1e3d4bf9e21fb209d344768b",
+                "reference": "6066de113408496e1e3d4bf9e21fb209d344768b",
                 "shasum": ""
             },
             "require": {
@@ -6264,7 +6423,7 @@
             },
             "require-dev": {
                 "phpdocumentor/reflection-docblock": "^3.2|^4.0|^5.0",
-                "phpstan/phpdoc-parser": "^1.0",
+                "phpstan/phpdoc-parser": "^1.0|^2.0",
                 "seld/jsonlint": "^1.10",
                 "symfony/cache": "^6.4|^7.0",
                 "symfony/config": "^6.4|^7.0",
@@ -6313,7 +6472,7 @@
             "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/serializer/tree/v7.1.5"
+                "source": "https://github.com/symfony/serializer/tree/v7.1.8"
             },
             "funding": [
                 {
@@ -6329,7 +6488,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-20T12:13:15+00:00"
+            "time": "2024-11-09T09:16:45+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -7152,6 +7311,82 @@
                 }
             ],
             "time": "2024-09-17T09:16:35+00:00"
+        },
+        {
+            "name": "symfony/ux-react",
+            "version": "v2.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ux-react.git",
+                "reference": "1e8f097e73f6d561272b044cb3a7b5ab84eda3ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/ux-react/zipball/1e8f097e73f6d561272b044cb3a7b5ab84eda3ce",
+                "reference": "1e8f097e73f6d561272b044cb3a7b5ab84eda3ce",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/stimulus-bundle": "^2.9.1"
+            },
+            "require-dev": {
+                "symfony/asset-mapper": "^6.3|^7.0",
+                "symfony/finder": "^5.4|^6.0|^7.0",
+                "symfony/framework-bundle": "^5.4|^6.0|^7.0",
+                "symfony/phpunit-bridge": "^5.4|^6.0|^7.0",
+                "symfony/twig-bundle": "^5.4|^6.0|^7.0",
+                "symfony/var-dumper": "^5.4|^6.0|^7.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/ux",
+                    "url": "https://github.com/symfony/ux"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\UX\\React\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Titouan Galopin",
+                    "email": "galopintitouan@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Integration of React in Symfony",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "symfony-ux"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/ux-react/tree/v2.21.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-10-22T14:52:13+00:00"
         },
         {
             "name": "symfony/ux-turbo",
